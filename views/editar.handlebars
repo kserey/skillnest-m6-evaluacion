@@ -1,0 +1,25 @@
+<h2 class="mb-4">Editar Contacto</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form action="/actualizar/{{contacto.id}}" method="POST">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre Completo</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="{{contacto.nombre}}" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" value="{{contacto.telefono}}" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{contacto.email}}" required>
+            </div>
+
+            <button type="submit" class="btn btn-success">Actualizar Contacto</button>
+            <a href="/" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
