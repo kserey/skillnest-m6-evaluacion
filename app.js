@@ -77,6 +77,36 @@ app.post('/agregar', (req, res) => {
 });
 
 
+app.get('/borrar/:id', (req, res) => {
+    const idParaBorrar = parseInt(req.params.id);
+    const rutaArchivo = path.join(__dirname, 'data', 'contactos.txt');
+
+    fs.readFile(rutaArchivo, 'utf8', (err, data) => {
+        if (err) {
+            console.error("Error al leer archivo:", err);
+            return res.redirect('/');
+        }
+
+        try {
+            const contactos = JSON.parse(data);
+
+            const contactosActualizados = contactos.filter(contacto => contacto.id !== idParaBorrar);
+
+            fs.writeFile(rutaArchivo, JSON.stringify(contactosActualizados, null, 2), (err) => {
+                if (err) {
+                    console.error("Error al guardar después de borrar:", err);
+                }
+
+                res.redirect('/');
+            });
+
+        } catch (error) {
+            console.error("Error procesando los datos:", error);
+            res.redirect('/');
+        }
+    });
+});
+
 
 
 
